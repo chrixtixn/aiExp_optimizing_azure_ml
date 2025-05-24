@@ -16,7 +16,7 @@ def clean_data(data):
     weekdays = {"mon":1, "tue":2, "wed":3, "thu":4, "fri":5, "sat":6, "sun":7}
 
     # Clean and one hot encode data
-    x_df = data.to_pandas_dataframe().dropna()
+    x_df = data.dropna()
     jobs = pd.get_dummies(x_df.job, prefix="job")
     x_df.drop("job", inplace=True, axis=1)
     x_df = x_df.join(jobs)
@@ -38,8 +38,6 @@ def clean_data(data):
     return x_df, y_df
 
 def main():
-    print(os.getcwd())
-    print(dir())
     # Add arguments to script
     parser = argparse.ArgumentParser()
 
@@ -72,8 +70,6 @@ def main():
     accuracy = model.score(x_test, y_test)
     run.log("Accuracy", np.float(accuracy))
 
-    os.makedirs('Users/odl_user_281290/outputs', exist_ok=True)
-    joblib.dump(model, 'Users/odl_user_281290/outputs/model.joblib')
     os.makedirs('outputs', exist_ok=True)
     joblib.dump(model, 'outputs/model.joblib')
 
