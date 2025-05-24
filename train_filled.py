@@ -70,5 +70,8 @@ def main():
     accuracy = model.score(x_test, y_test)
     run.log("Accuracy", np.float(accuracy))
 
+    os.makedirs('Users/odl_user_281290/outputs', exist_ok=True)
+    joblib.dump(model, 'Users/odl_user_281290/outputs/model.joblib')
+
 if __name__ == '__main__':
     main()
