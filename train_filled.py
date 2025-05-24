@@ -38,6 +38,8 @@ def clean_data(data):
     return x_df, y_df
 
 def main():
+    print(os.getcwd())
+    print(dir())
     # Add arguments to script
     parser = argparse.ArgumentParser()
 
@@ -72,6 +74,8 @@ def main():
 
     os.makedirs('Users/odl_user_281290/outputs', exist_ok=True)
     joblib.dump(model, 'Users/odl_user_281290/outputs/model.joblib')
+    os.makedirs('outputs', exist_ok=True)
+    joblib.dump(model, 'outputs/model.joblib')
 
 if __name__ == '__main__':
     main()
